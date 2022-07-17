@@ -1,0 +1,29 @@
+﻿<Window x:Class="AOEStatsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:AOEStatsApp.Views"
+        xmlns:viewModels="clr-namespace:AOEStatsApp.ViewModels"
+        mc:Ignorable="d"
+        FontSize="14"
+        Title="Aoe Stats"
+        WindowState="Maximized"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:CreateOrEditUnitStatsItemViewModel}">
+            <views:CreateOrEditUnitStatsItemView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:UnitStatsItemListingViewModel}">
+            <views:UnitStatsItemListingView />
+        </DataTemplate>
+    </Window.Resources>
+
+        
+    <Grid Margin="40">
+        <ContentControl Content="{Binding CurrentViewModel}" />
+    </Grid>
+
+</Window>
