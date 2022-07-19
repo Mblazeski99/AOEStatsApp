@@ -54,7 +54,7 @@ namespace AOEStatsApp.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AOEStatsApp;component/views/createoreditunitstatsitemview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AOEStatsApp;V1.0.0.0;component/views/createoreditunitstatsitemview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\CreateOrEditUnitStatsItemView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
