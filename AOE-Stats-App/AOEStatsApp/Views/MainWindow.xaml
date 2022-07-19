@@ -21,7 +21,6 @@
         </DataTemplate>
     </Window.Resources>
 
-        
     <Grid Margin="40">
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>

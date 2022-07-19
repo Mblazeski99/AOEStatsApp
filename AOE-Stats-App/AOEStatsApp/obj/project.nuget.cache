@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M3hPXm7dKHBJX1cgr3WV2qW0tbKqowx/YhrHD5mWtcb38Q0l0Nqyk+RllKHYzXM8VoEudUU0hmBiQyv9SK1A3Q==",
+  "dgSpecHash": "e98WqjUZVhBrAN2kb58PhMixu6GELgxDR5Kv6aEq3OvLP7FS76d+6WfGJZGazDamhkja9vFwU7F8mUhIPYL2EQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marko\\Desktop\\Repos\\AOE-Stats-App\\AOEStatsApp\\AOEStatsApp.csproj",
+  "projectFilePath": "C:\\Users\\Marko\\Desktop\\Repos\\AOEStatsApp\\AOEStatsApp\\AOE-Stats-App\\AOEStatsApp\\AOEStatsApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marko\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Marko\\.nuget\\packages\\loadingspinner.wpf\\1.0.0\\loadingspinner.wpf.1.0.0.nupkg.sha512",

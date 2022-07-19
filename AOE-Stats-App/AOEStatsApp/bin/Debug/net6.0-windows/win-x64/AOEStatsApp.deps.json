@@ -11,7 +11,6 @@
         "dependencies": {
           "DataContext": "1.0.0",
           "LoadingSpinner.WPF": "1.0.0",
-          "LoadingSpinnerControl": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore.Design": "6.0.6",
           "Microsoft.Extensions.Hosting": "6.0.1",

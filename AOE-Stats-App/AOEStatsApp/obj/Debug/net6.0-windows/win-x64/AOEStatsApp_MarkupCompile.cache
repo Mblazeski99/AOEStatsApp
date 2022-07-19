@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Marko\Desktop\Repos\AOE-Stats-App\AOEStatsApp\obj\Debug\net6.0-windows\win-x64\
+C:\Users\Marko\Desktop\Repos\AOEStatsApp\AOEStatsApp\AOE-Stats-App\AOEStatsApp\obj\Debug\net6.0-windows\win-x64\
 AOEStatsApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Marko\Desktop\Repos\AOE-Stats-App\AOEStatsApp\App.xaml
+C:\Users\Marko\Desktop\Repos\AOEStatsApp\AOEStatsApp\AOE-Stats-App\AOEStatsApp\App.xaml
 5541111324
 11468193797
 31408184140
-235922617426
+235977954268
 Assets\Resources\Styles.xaml;Assets\Resources\ValueConverters.xaml;Views\CreateOrEditUnitStatsItemView.xaml;Views\MainWindow.xaml;Views\UnitStatsItemListingView.xaml;
 
 False

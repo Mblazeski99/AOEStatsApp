@@ -16,8 +16,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Create Unit" 
-                   Style="{StaticResource HeaderTextBlockStyle}" />
+        <TextBlock Text="Create Unit" Style="{StaticResource HeaderTextBlockStyle}" />
 
         <Grid Grid.Row="1">
 

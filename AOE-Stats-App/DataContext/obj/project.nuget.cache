@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gkJAQldl3OBognCGd9zwJC80yvbr5VZlNNxQlTlX8xZ5uz+/VljEx4pw7mYF5NXeHvwoV1dszdw1w6hAe5WO2w==",
+  "dgSpecHash": "FAEBtp4fKs4kZA4jvVeAntMawT3ia06q0gsGdpMfClJpqAYU3GPTo34SlNdhB41zXjVEB+MsZiSA3+99NK9M2g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marko\\Desktop\\Repos\\AOE-Stats-App\\DataContext\\DataContext.csproj",
+  "projectFilePath": "C:\\Users\\Marko\\Desktop\\Repos\\AOEStatsApp\\AOEStatsApp\\AOE-Stats-App\\DataContext\\DataContext.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marko\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Marko\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.6\\microsoft.data.sqlite.core.6.0.6.nupkg.sha512",

@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataContext\DataContext.csproj" />
-    <ProjectReference Include="..\LoadingSpinnerControl\LoadingSpinnerControl.csproj" />
+    <!--<ProjectReference Include="..\LoadingSpinnerControl\LoadingSpinnerControl.csproj" />-->
   </ItemGroup>
 
   <ItemGroup>
