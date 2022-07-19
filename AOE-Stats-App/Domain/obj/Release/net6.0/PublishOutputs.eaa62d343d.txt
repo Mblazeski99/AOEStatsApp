@@ -1,3 +1,0 @@
-C:\Users\Marko\Desktop\Repos\AOE-Stats-App\Domain\bin\Release\net6.0\publish\Domain.dll
-C:\Users\Marko\Desktop\Repos\AOE-Stats-App\Domain\bin\Release\net6.0\publish\Domain.deps.json
-C:\Users\Marko\Desktop\Repos\AOE-Stats-App\Domain\bin\Release\net6.0\publish\Domain.pdb
