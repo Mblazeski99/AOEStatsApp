@@ -52,50 +52,26 @@
             <Grid Visibility="{Binding IsItemsGridLoading, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
 
                 <TextBlock Text="No Items Found" />
-                
-                <!--#region Since Gridviewcolumn doesn't have strecth options
-                    these grid column definitions will contain the responsive widths 
-                    and later will be bound to the gridviewcolumns -->
-                
-                <Grid Margin="15 0">
 
-                    <Grid.ColumnDefinitions>
+                <DataGrid ItemsSource="{Binding UnitStatsItems}">
 
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition MinWidth="100" Width="1*"/>
-                        <ColumnDefinition MinWidth="100" Width="1*"/>
-                        <ColumnDefinition Width="150"/>
+                    <DataGrid.Resources>
 
-                    </Grid.ColumnDefinitions>
+                        <Style TargetType="DataGrid">
 
-                    <Grid Grid.Column="0" x:Name="col1"/>
-                    <Grid Grid.Column="1" x:Name="col2"/>
-                    <Grid Grid.Column="2" x:Name="col3"/>
-                    <Grid Grid.Column="3" x:Name="col4"/>
-                    <Grid Grid.Column="4" x:Name="col5"/>
-                    <Grid Grid.Column="5" x:Name="col6"/>
-                    <Grid Grid.Column="6" x:Name="col7"/>
-                    <Grid Grid.Column="7" x:Name="col8"/>
-                    <Grid Grid.Column="8" x:Name="col9"/>
-                    <Grid Grid.Column="9" x:Name="col10"/>
+                            <Setter Property="AutoGenerateColumns" Value="False" />
+                            <Setter Property="CanUserAddRows" Value="False" />
+                            <Setter Property="CanUserDeleteRows" Value="False" />
+                            <Setter Property="AreRowDetailsFrozen" Value="True" />
+                            <Setter Property="CanUserResizeColumns" Value="False" />
+                            <Setter Property="CanUserReorderColumns" Value="False" />
+                            <Setter Property="CanUserResizeRows" Value="False" />
+                            <Setter Property="SelectionMode" Value="Single" />
+                            <Setter Property="HeadersVisibility" Value="Column" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="AlternatingRowBackground" Value="#e8e8e8" />
 
-                </Grid>
-                
-                <!--#endregion-->
-
-                <ListView ItemsSource="{Binding UnitStatsItems}" HorizontalContentAlignment="Stretch">
-
-                    <ListView.Style>
-                        <Style TargetType="ListView">
-                            
                             <Setter Property="Visibility" Value="Visible" />
-
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Items.Count}"
                                              Value="0">
@@ -104,118 +80,71 @@
 
                                 </DataTrigger>
                             </Style.Triggers>
-                            
+
                         </Style>
-                    </ListView.Style>
 
-                    <ListView.ItemContainerStyle>
-
-                        <Style TargetType="ListViewItem">
+                        <Style TargetType="DataGridRow">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
 
-                    </ListView.ItemContainerStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Height" Value="40" />
 
-                    <ListView.View>
-                        <GridView>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Grid Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
 
-                            <GridViewColumn Header="Unit Type" Width="{Binding ElementName=col1, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding UnitType}" Padding="10 0 20 0" HorizontalAlignment="Center" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            <Style.Triggers>
+                                <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#CCDAFF" />
+                                    <Setter Property="BorderBrush" Value="#000" />
+                                    <Setter Property="Foreground" Value="#000" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
 
-                            <GridViewColumn Header="Civilization" Width="{Binding ElementName=col2, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Civilization}" HorizontalAlignment="Center" Padding="10 0 20 0" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                    </DataGrid.Resources>
 
-                            <GridViewColumn Header="Food Cost" Width="{Binding ElementName=col3, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding FoodCost}" Padding="0 0 20 0" HorizontalAlignment="Center" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Unit Type" Width="150" Binding="{Binding UnitType, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Civilization" Width="150" Binding="{Binding Civilization, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Food Cost" Width="100" ElementStyle="{StaticResource CenterTextTextBlock}" Binding="{Binding FoodCost, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Wood Cost" Width="100" ElementStyle="{StaticResource CenterTextTextBlock}" Binding="{Binding WoodCost, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Gold Cost" Width="100" ElementStyle="{StaticResource CenterTextTextBlock}" Binding="{Binding GoldCost, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Stone Cost" Width="100" ElementStyle="{StaticResource CenterTextTextBlock}" Binding="{Binding StoneCost, Mode=OneWay}" />
+                        <DataGridCheckBoxColumn Header="Is Done" Width="100" Binding="{Binding IsDone, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Attributes" MinWidth="100" Width="1*" Binding="{Binding Attributes, Mode=OneWay}" />
+                        <DataGridTextColumn Header="Video Link" MinWidth="100" Width="1*" Binding="{Binding VideoLink, Mode=OneWay}" />
 
-                            <GridViewColumn Header="Wood Cost" Width="{Binding ElementName=col4, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding WoodCost}" Padding="0 0 20 0" HorizontalAlignment="Center" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                        <DataGridTemplateColumn Header="Actions" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                            <GridViewColumn Header="Gold Cost" Width="{Binding ElementName=col5, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding GoldCost}" Padding="0 0 20 0" HorizontalAlignment="Center" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                        <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.EditItemCommand}"
+                                                CommandParameter="{Binding }"
+                                                Content="Edit" />
 
-                            <GridViewColumn Header="Stone Cost" Width="{Binding ElementName=col6, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding StoneCost}" Padding="0 0 20 0" HorizontalAlignment="Center" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                        <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteItemCommand}"
+                                                CommandParameter="{Binding }"
+                                                Content="Delete" 
+                                                Margin="10 0 0 0" />
 
-                            <GridViewColumn Header="Is Done" Width="{Binding ElementName=col7, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <CheckBox IsChecked="{Binding IsDone, Mode=OneWay}" IsEnabled="False" Padding="0 0 0 0" HorizontalAlignment="Center" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-
-                            <GridViewColumn Header="Attributes" Width="{Binding ElementName=col8, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Attributes}" Padding="0 0 20 0" HorizontalAlignment="Left" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-
-                            <GridViewColumn Header="Video Link" Width="{Binding ElementName=col9, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding VideoLink}" Padding="0 0 20 0" HorizontalAlignment="Left" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-
-                            <GridViewColumn Header="Actions" Width="{Binding ElementName=col10, Path=ActualWidth}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            
-                                            <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.EditItemCommand}"
-                                                    CommandParameter="{Binding }"
-                                                    Content="Edit" />
-
-                                            <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteItemCommand}"
-                                                    CommandParameter="{Binding }"
-                                                    Content="Delete" 
-                                                    Margin="10 0 0 0" />
-                                            
-                                        </StackPanel>
-                                        
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-
-                        </GridView>
-                    </ListView.View>
-
-                </ListView>
+                                    </StackPanel>
+                                    
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    
+                </DataGrid>
                 
             </Grid>
 

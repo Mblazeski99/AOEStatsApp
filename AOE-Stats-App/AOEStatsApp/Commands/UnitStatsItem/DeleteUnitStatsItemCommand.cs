@@ -26,7 +26,7 @@ namespace AOEStatsApp.Commands
         {
             try
             {
-                MessageBoxResult answer = MessageBox.Show("Are you sure you want to delete this unit", "Delete Unit", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult answer = MessageBox.Show("Are you sure you want to delete this unit?", "Delete Unit", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (answer == MessageBoxResult.Yes)
                 {
