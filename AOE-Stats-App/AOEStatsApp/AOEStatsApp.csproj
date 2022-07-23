@@ -21,13 +21,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="ToastNotifications" Version="2.5.1" />
     <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DataContext\DataContext.csproj" />
-    <!--<ProjectReference Include="..\LoadingSpinnerControl\LoadingSpinnerControl.csproj" />-->
   </ItemGroup>
 
   <ItemGroup>

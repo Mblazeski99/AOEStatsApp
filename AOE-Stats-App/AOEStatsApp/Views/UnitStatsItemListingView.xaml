@@ -120,7 +120,7 @@
                         <DataGridTextColumn Header="Stone Cost" Width="100" ElementStyle="{StaticResource CenterTextTextBlock}" Binding="{Binding StoneCost, Mode=OneWay}" />
                         <DataGridCheckBoxColumn Header="Is Done" Width="100" Binding="{Binding IsDone, Mode=OneWay}" />
                         <DataGridTextColumn Header="Attributes" MinWidth="100" Width="1*" Binding="{Binding Attributes, Mode=OneWay}" />
-                        <DataGridTextColumn Header="Video Link" MinWidth="100" Width="1*" Binding="{Binding VideoLink, Mode=OneWay}" />
+                        <DataGridHyperlinkColumn Header="Video Link" MinWidth="100" Width="1*" Binding="{Binding VideoLink, Mode=OneWay}" />
 
                         <DataGridTemplateColumn Header="Actions" Width="150">
                             <DataGridTemplateColumn.CellTemplate>

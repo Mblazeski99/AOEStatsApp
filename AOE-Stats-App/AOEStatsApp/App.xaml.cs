@@ -16,6 +16,7 @@ using Domain.Models;
 using Domain.Enums;
 using ToastNotifications.Messages;
 using ToastNotifications.Core;
+using System.Windows.Documents;
 
 namespace AOEStatsApp
 {
@@ -23,6 +24,7 @@ namespace AOEStatsApp
     {
         private readonly IHost _host;
         private Notifier _notifier;
+        private AppData _appData;
 
         public App()
         {
@@ -40,6 +42,11 @@ namespace AOEStatsApp
                         DataContext = s.GetRequiredService<MainViewModel>()
                     });
                 }).Build();
+
+            _appData = new AppData();
+
+            InitializeNotifier();
+            InitializeGlobalEvents();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -58,15 +65,7 @@ namespace AOEStatsApp
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
 
-            InitializeNotifier();
-
             base.OnStartup(e);
-        }
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            _host.Dispose();
-            base.OnExit(e);
         }
 
         private void InitializeNotifier()
@@ -108,6 +107,19 @@ namespace AOEStatsApp
                         break;
                 }
             };
+        }
+
+        private void InitializeGlobalEvents()
+        {
+            EventManager.RegisterClassHandler(typeof(Hyperlink),
+                Hyperlink.ClickEvent,
+                new RoutedEventHandler(_appData.Hyperlink_RequestNavigate));
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host.Dispose();
+            base.OnExit(e);
         }
     }
 }
