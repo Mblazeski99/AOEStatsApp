@@ -180,7 +180,8 @@
             <Button Content="Submit" Command="{Binding SubmitCommand}" />
 
             <Button Content="Cancel" 
-                    Command="{Binding CancelCommand}"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type viewModels:UnitStatsItemListingViewModel}"
                     Margin="10 0 0 0" />
 
         </StackPanel>

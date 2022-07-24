@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:AOEStatsApp.Views"
         xmlns:viewModels="clr-namespace:AOEStatsApp.ViewModels"
+        xmlns:interactivity="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         FontSize="14"
         Title="Aoe Stats"
@@ -25,12 +26,20 @@
 
         </Style>
 
+        <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
+            <views:HomeView />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModels:CreateOrEditUnitStatsItemViewModel}">
             <views:CreateOrEditUnitStatsItemView />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:UnitStatsItemListingViewModel}">
             <views:UnitStatsItemListingView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:NotificationsLogViewModel}">
+            <views:NotificationsLogView />
         </DataTemplate>
 
     </Window.Resources>
@@ -273,6 +282,40 @@
 
                     <ListViewItem>
 
+                        <interactivity:Interaction.Triggers>
+                            <interactivity:EventTrigger EventName="PreviewMouseUp">
+
+                                <interactivity:InvokeCommandAction Command="{Binding NavigateCommand}"
+                                                                   CommandParameter="{x:Type viewModels:HomeViewModel}" />
+
+                            </interactivity:EventTrigger>
+                        </interactivity:Interaction.Triggers>
+
+                        <StackPanel>
+                            <Image Source="/Assets/Images/AOEStats-hamburger-icon.png" />
+                            <TextBlock Text="Home" />
+                        </StackPanel>
+
+                        <ListViewItem.ToolTip>
+
+                            <ToolTip Visibility="{Binding IsNavMenuOpen, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+                                     Content="Home" />
+
+                        </ListViewItem.ToolTip>
+
+                    </ListViewItem>
+
+                    <ListViewItem>
+
+                        <interactivity:Interaction.Triggers>
+                            <interactivity:EventTrigger EventName="PreviewMouseUp">
+
+                                <interactivity:InvokeCommandAction Command="{Binding NavigateCommand}"
+                                                                   CommandParameter="{x:Type viewModels:UnitStatsItemListingViewModel}" />
+
+                            </interactivity:EventTrigger>
+                        </interactivity:Interaction.Triggers>
+
                         <StackPanel>
                             <Image Source="/Assets/Images/AOEStats-hamburger-icon.png" />
                             <TextBlock Text="Units" />
@@ -288,6 +331,15 @@
                     </ListViewItem>
 
                     <ListViewItem>
+
+                        <interactivity:Interaction.Triggers>
+                            <interactivity:EventTrigger EventName="PreviewMouseUp">
+
+                                <interactivity:InvokeCommandAction Command="{Binding NavigateCommand}"
+                                                                   CommandParameter="{x:Type viewModels:NotificationsLogViewModel}" />
+
+                            </interactivity:EventTrigger>
+                        </interactivity:Interaction.Triggers>
 
                         <StackPanel>
                             <Image Source="/Assets/Images/AOEStats-hamburger-icon.png" />

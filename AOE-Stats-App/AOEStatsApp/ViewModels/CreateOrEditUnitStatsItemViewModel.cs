@@ -131,9 +131,9 @@ namespace AOEStatsApp.ViewModels
         public bool IsEditMode { get; set; }
 
         public ICommand SubmitCommand { get; }
-        public ICommand CancelCommand { get; }
+        public ICommand NavigateCommand { get; }
 
-        public CreateOrEditUnitStatsItemViewModel(UnitStatsStore unitStatsStore, NavigationService<UnitStatsItemListingViewModel> navigationService, NotificationsStore notificationsStore)
+        public CreateOrEditUnitStatsItemViewModel(NavigationStore navigationStore, UnitStatsStore unitStatsStore, NotificationsStore notificationsStore)
         {
             if (unitStatsStore.CurrentUnitStatsItem != null)
             {
@@ -151,7 +151,7 @@ namespace AOEStatsApp.ViewModels
             }
 
             SubmitCommand = new CreateOrEditUnitStatsItemCommand(this, unitStatsStore, notificationsStore);
-            CancelCommand = new NavigateCommand<UnitStatsItemListingViewModel>(navigationService);
+            NavigateCommand = new NavigateCommand(navigationStore, unitStatsStore: unitStatsStore, notificationsStore: notificationsStore);
         }
     }
 }

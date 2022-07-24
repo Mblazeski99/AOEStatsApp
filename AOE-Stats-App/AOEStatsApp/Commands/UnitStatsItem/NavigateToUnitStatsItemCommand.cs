@@ -1,5 +1,4 @@
 ﻿using AOEStatsApp.Helpers;
-using AOEStatsApp.Services;
 using AOEStatsApp.Stores;
 using AOEStatsApp.ViewModels;
 using Domain.Enums;
@@ -11,16 +10,16 @@ namespace AOEStatsApp.Commands
     public class NavigateToUnitStatsItemCommand : CommandBase
     {
         private readonly UnitStatsStore _unitsStore;
-        private readonly NavigationService<CreateOrEditUnitStatsItemViewModel> _navigationService;
+        private readonly NavigationStore _navigationStore;
         private readonly NotificationsStore _notificationsStore;
         private readonly UnitStatsItemListingViewModel _unitStatsItemListingViewModel;
 
-        public NavigateToUnitStatsItemCommand(UnitStatsStore unitsStore, NavigationService<CreateOrEditUnitStatsItemViewModel> navigationService, NotificationsStore notificationsStore, UnitStatsItemListingViewModel unitStatsItemListingViewModel)
+        public NavigateToUnitStatsItemCommand(UnitStatsStore unitsStore, NotificationsStore notificationsStore, UnitStatsItemListingViewModel unitStatsItemListingViewModel, NavigationStore navigationStore)
         {
             _unitsStore = unitsStore;
-            _navigationService = navigationService;
             _notificationsStore = notificationsStore;
             _unitStatsItemListingViewModel = unitStatsItemListingViewModel;
+            _navigationStore = navigationStore;
         }
 
         public override void Execute(object parameter)
@@ -33,7 +32,7 @@ namespace AOEStatsApp.Commands
                 PropertyCopier<UnitStatsItemViewModel, UnitStatsItem>.Copy((parameter as UnitStatsItemViewModel), item);
 
                 _unitsStore.SetCurrentUnitStatsItem(item);
-                _navigationService.Navigate();
+                _navigationStore.CurrentViewModel = new CreateOrEditUnitStatsItemViewModel(_navigationStore, _unitsStore, _notificationsStore);
             } 
             catch (Exception ex)
             {

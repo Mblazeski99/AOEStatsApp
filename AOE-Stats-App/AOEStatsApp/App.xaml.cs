@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AOEStatsApp.Services;
 using System.Windows;
 using ToastNotifications;
 using ToastNotifications.Position;
@@ -58,8 +57,8 @@ namespace AOEStatsApp
                 dbContext.Database.Migrate();
             }
 
-            var navigationService = _host.Services.GetRequiredService<NavigationService<UnitStatsItemListingViewModel>>();
-            navigationService.Navigate();
+            var navigationStore = _host.Services.GetRequiredService<NavigationStore>();
+            navigationStore.CurrentViewModel = new HomeViewModel();
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();

@@ -14,26 +14,15 @@ namespace AOEStatsApp.HostBuilders
         {
             hostBuilder.ConfigureServices(services =>
             {
-                services.AddTransient((s) => CreateUnitStatsItemListingViewModel(s));
                 services.AddSingleton<Func<UnitStatsItemListingViewModel>>((s) => () => s.GetRequiredService<UnitStatsItemListingViewModel>());
-                services.AddSingleton<NavigationService<UnitStatsItemListingViewModel>>();
 
                 services.AddTransient<CreateOrEditUnitStatsItemViewModel>();
                 services.AddSingleton<Func<CreateOrEditUnitStatsItemViewModel>>((s) => () => s.GetRequiredService<CreateOrEditUnitStatsItemViewModel>());
-                services.AddSingleton<NavigationService<CreateOrEditUnitStatsItemViewModel>>();
 
                 services.AddSingleton<MainViewModel>();
             });
 
             return hostBuilder;
-        }
-
-        private static UnitStatsItemListingViewModel CreateUnitStatsItemListingViewModel(IServiceProvider services)
-        {
-            return UnitStatsItemListingViewModel.LoadViewModel(
-                services.GetRequiredService<UnitStatsStore>(),
-                services.GetRequiredService<NavigationService<CreateOrEditUnitStatsItemViewModel>>(),
-                services.GetRequiredService<NotificationsStore>());
         }
 
         public static IHostBuilder AddServices(this IHostBuilder hostBuilder)

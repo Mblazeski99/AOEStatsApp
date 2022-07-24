@@ -1,4 +1,6 @@
-﻿using AOEStatsApp.Stores;
+﻿using AOEStatsApp.Commands;
+using AOEStatsApp.Stores;
+using System.Windows.Input;
 
 namespace AOEStatsApp.ViewModels
 {
@@ -19,10 +21,14 @@ namespace AOEStatsApp.ViewModels
 
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
-        public MainViewModel(NavigationStore navigationStore)
+        public ICommand NavigateCommand { get; }
+
+        public MainViewModel(UnitStatsStore unitStatsStore, NavigationStore navigationStore, NotificationsStore notificationsStore)
         {
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+
+            NavigateCommand = new NavigateCommand(unitStatsStore: unitStatsStore, navigationStore: navigationStore, notificationsStore: notificationsStore);
         }
 
         private void OnCurrentViewModelChanged()
