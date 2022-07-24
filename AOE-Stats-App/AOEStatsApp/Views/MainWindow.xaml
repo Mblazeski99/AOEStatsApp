@@ -12,6 +12,19 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}">
 
     <Window.Resources>
+
+        <ImageBrush x:Key="NavigationMenuToggleButtonHover" 
+                    ImageSource="/Assets/Images/AOEStats-hamburger-icon.png" />
+
+        <Style x:Key="NavigationMenuFontStyle" TargetType="TextBlock">
+
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+
+        </Style>
+
         <DataTemplate DataType="{x:Type viewModels:CreateOrEditUnitStatsItemViewModel}">
             <views:CreateOrEditUnitStatsItemView />
         </DataTemplate>
@@ -19,10 +32,310 @@
         <DataTemplate DataType="{x:Type viewModels:UnitStatsItemListingViewModel}">
             <views:UnitStatsItemListingView />
         </DataTemplate>
+
     </Window.Resources>
 
-    <Grid Margin="40">
-        <ContentControl Content="{Binding CurrentViewModel}" />
+    <Grid>
+
+        <Grid x:Name="NavigationMenu"
+              HorizontalAlignment="Left"
+              Width="60"
+              Background="#2E333A"
+              Panel.ZIndex="2">
+
+            <StackPanel>
+
+                <Grid Height="90">
+
+                    <TextBlock Grid.Row="1"
+                               Margin="73 -20 0 0"
+                               Text="M E N U"
+                               Foreground="White" Background="Transparent"
+                               FontSize="22"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Style="{StaticResource NavigationMenuFontStyle}">
+
+                        <TextBlock.Effect>
+
+                            <DropShadowEffect BlurRadius="10" 
+                                              ShadowDepth="1"
+                                              Direction="-90"
+                                              Color="White" />
+
+                        </TextBlock.Effect>
+
+                    </TextBlock>
+
+                    <ToggleButton VerticalAlignment="Center" HorizontalAlignment="Left"
+                                  Margin="13 -20 0 0"
+                                  Height="30" Width="30"
+                                  IsChecked="{Binding IsNavMenuOpen}"
+                                  BorderThickness="0">
+
+                        <ToggleButton.Style>
+                            
+                            <Style TargetType="{x:Type ToggleButton}">
+
+                                <Setter Property="Template">
+
+                                    <Setter.Value>
+
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+
+                                            <Border x:Name="ToggleButtonBorder"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    Background="{TemplateBinding Background}"
+                                                    SnapsToDevicePixels="True" />
+
+                                            <ControlTemplate.Triggers>
+
+                                                <Trigger Property="IsMouseOver" Value="True">
+
+                                                    <Setter Property="Background"
+                                                            TargetName="ToggleButtonBorder"
+                                                            Value="{StaticResource NavigationMenuToggleButtonHover}" />
+
+                                                    <Setter Property="BorderBrush"
+                                                            TargetName="ToggleButtonBorder"
+                                                            Value="{StaticResource NavigationMenuToggleButtonHover}" />
+
+                                                    <Setter Property="Cursor" Value="Hand" />
+
+                                                </Trigger>
+
+                                                <Trigger Property="IsChecked" Value="True">
+
+                                                    <Setter Property="Background" 
+                                                            TargetName="ToggleButtonBorder"
+                                                            Value="{StaticResource NavigationMenuToggleButtonHover}" />
+
+                                                    <Setter Property="BorderBrush" 
+                                                            TargetName="ToggleButtonBorder"
+                                                            Value="{StaticResource NavigationMenuToggleButtonHover}" />
+
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>
+
+                                        </ControlTemplate>
+
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+                            
+                        </ToggleButton.Style>
+
+                        <ToggleButton.Background>
+
+                            <ImageBrush ImageSource="/Assets/Images/AOEStats-hamburger-icon.png" 
+                                        Stretch="None" />
+
+                        </ToggleButton.Background>
+
+                        <ToggleButton.Triggers>
+
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard>
+
+                                        <DoubleAnimation Storyboard.TargetName="NavigationMenu"
+                                                         Storyboard.TargetProperty="Width"
+                                                         BeginTime="0:0:0"
+                                                         From="230" To="60"
+                                                         Duration="0:0:0.2" />
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard>
+
+                                        <DoubleAnimation Storyboard.TargetName="NavigationMenu"
+                                                         Storyboard.TargetProperty="Width"
+                                                         BeginTime="0:0:0"
+                                                         From="60" To="230"
+                                                         Duration="0:0:0.3" />
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+                        </ToggleButton.Triggers>
+
+                    </ToggleButton>
+
+                </Grid>
+
+                <ListView Background="Transparent"
+                          BorderBrush="Transparent"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListView.Resources>
+
+                        <Style TargetType="ListViewItem">
+
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+
+                            <Setter Property="Template">
+
+                                <Setter.Value>
+
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+
+                                        <Border x:Name="ListViewItemBorder"
+                                                Height="50"
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                Background="{TemplateBinding Background}"
+                                                Padding="{TemplateBinding Padding}"
+                                                SnapsToDevicePixels="True">
+
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                                        </Border>
+
+                                        <ControlTemplate.Triggers>
+
+                                            <MultiTrigger>
+
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="True" />
+                                                </MultiTrigger.Conditions>
+
+                                                <Setter Property="Background" 
+                                                        TargetName="ListViewItemBorder"
+                                                        Value="#404D5B" />
+
+                                                <Setter Property="BorderBrush"
+                                                        TargetName="ListViewItemBorder"
+                                                        Value="#404D5B" />
+
+                                            </MultiTrigger>
+
+                                        </ControlTemplate.Triggers>
+
+                                    </ControlTemplate>
+
+                                </Setter.Value>
+
+                            </Setter>
+
+                        </Style>
+
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Orientation" Value="Horizontal" />
+                            <Setter Property="Width" Value="230" />
+                        </Style>
+
+                        <Style TargetType="Image">
+                            <Setter Property="Stretch" Value="None" />
+                            <Setter Property="Margin" Value="7 0 0 0" />
+                        </Style>
+
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource NavigationMenuFontStyle}">
+                            <Setter Property="Margin" Value="25 0 0 0" />
+                        </Style>
+
+                        <Style TargetType="ToolTip">
+
+                            <Setter Property="Placement" Value="Right" />
+                            <Setter Property="Height" Value="40" />
+                            <Setter Property="Width" Value="110" />
+                            <Setter Property="Margin" Value="0 0 0 0" />
+                            <Setter Property="Background" Value="#4A5668" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="PlacementRectangle" Value="60 0 0 0" />
+                            <Setter Property="HorizontalOffset" Value="5" />
+                            <Setter Property="VerticalOffset" Value="5" />
+                            <Setter Property="HasDropShadow" Value="True" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+
+                        </Style>
+
+                    </ListView.Resources>
+
+                    <ListViewItem>
+
+                        <StackPanel>
+                            <Image Source="/Assets/Images/AOEStats-hamburger-icon.png" />
+                            <TextBlock Text="Units" />
+                        </StackPanel>
+
+                        <ListViewItem.ToolTip>
+
+                            <ToolTip Visibility="{Binding IsNavMenuOpen, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+                                     Content="Units" />
+
+                        </ListViewItem.ToolTip>
+
+                    </ListViewItem>
+
+                    <ListViewItem>
+
+                        <StackPanel>
+                            <Image Source="/Assets/Images/AOEStats-hamburger-icon.png" />
+                            <TextBlock Text="Notifications" />
+                        </StackPanel>
+
+                        <ListViewItem.ToolTip>
+
+                            <ToolTip Visibility="{Binding IsNavMenuOpen, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+                                     Content="Notifications" />
+                            
+                        </ListViewItem.ToolTip>
+
+                    </ListViewItem>
+
+                </ListView>
+
+            </StackPanel>
+
+        </Grid>
+
+        <Grid>
+
+            <Grid.Style>
+                
+                <Style TargetType="Grid">
+                    
+                    <Setter Property="Margin" Value="100 40 40 40" />
+                    <Setter Property="Margin" Value="100 40 40 40" />
+                    <Setter Property="Panel.ZIndex" Value="1" />
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="IsHitTestVisible" Value="True" />
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsNavMenuOpen}" Value="True">
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="IsHitTestVisible" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                </Style>
+                
+            </Grid.Style>
+            
+            <ContentControl Content="{Binding CurrentViewModel}" />
+            
+        </Grid>
+
     </Grid>
 
 </Window>

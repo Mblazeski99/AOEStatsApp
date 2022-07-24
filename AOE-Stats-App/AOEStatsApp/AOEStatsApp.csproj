@@ -10,7 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Images\AOEStats.ico" />
+    <None Remove="Assets\Images\AOEStats-hamburger-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\AOEStats-hamburger-icon.png" />
+    <Resource Include="Assets\Images\AOEStats.ico" />
   </ItemGroup>
 
   <ItemGroup>

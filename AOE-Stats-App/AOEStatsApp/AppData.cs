@@ -6,6 +6,7 @@ namespace AOEStatsApp
 {
     public class AppData
     {
+        #region EventHandlers
         public void Hyperlink_RequestNavigate(object sender, RoutedEventArgs e)
         {
             Hyperlink link = (Hyperlink)e.OriginalSource;
@@ -15,5 +16,6 @@ namespace AOEStatsApp
                 UseShellExecute = true
             });
         }
+        #endregion
     }
 }

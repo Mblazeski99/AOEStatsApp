@@ -44,7 +44,6 @@ namespace AOEStatsApp
                 }).Build();
 
             _appData = new AppData();
-
             InitializeNotifier();
             InitializeGlobalEvents();
         }
@@ -70,7 +69,7 @@ namespace AOEStatsApp
 
         private void InitializeNotifier()
         {
-            var _notifierMessageOptions = new MessageOptions() { UnfreezeOnMouseLeave = true };
+            var notifierMessageOptions = new MessageOptions() { UnfreezeOnMouseLeave = true };
 
             _notifier = new Notifier(cfg =>
             {
@@ -95,15 +94,15 @@ namespace AOEStatsApp
                 switch (notification?.MessageType)
                 {
                     case MessageType.Error:
-                        _notifier.ShowError(notification.Message, _notifierMessageOptions);
+                        _notifier.ShowError(notification.Message, notifierMessageOptions);
                         break;
 
                     case MessageType.Status:
-                        _notifier.ShowInformation(notification.Message, _notifierMessageOptions);
+                        _notifier.ShowInformation(notification.Message, notifierMessageOptions);
                         break;
 
                     case MessageType.Success:
-                        _notifier.ShowSuccess(notification.Message, _notifierMessageOptions);
+                        _notifier.ShowSuccess(notification.Message, notifierMessageOptions);
                         break;
                 }
             };

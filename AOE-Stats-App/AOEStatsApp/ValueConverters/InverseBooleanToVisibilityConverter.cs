@@ -9,7 +9,10 @@ namespace AOEStatsApp.ValueConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is bool boolValue && boolValue ? Visibility.Collapsed : Visibility.Visible;
+            if (value == null) return Visibility.Collapsed;
+
+            var res = value is bool boolValue && boolValue ? Visibility.Collapsed : Visibility.Visible;
+            return res;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
