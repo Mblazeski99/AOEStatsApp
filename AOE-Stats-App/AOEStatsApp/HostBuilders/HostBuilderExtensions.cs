@@ -30,6 +30,7 @@ namespace AOEStatsApp.HostBuilders
             hostBuilder.ConfigureServices(services =>
             {
                 services.AddSingleton<IUnitStatsItemService, UnitStatsItemService>();
+                services.AddSingleton<INotificationService, NotificationService>();
             });
 
             return hostBuilder;

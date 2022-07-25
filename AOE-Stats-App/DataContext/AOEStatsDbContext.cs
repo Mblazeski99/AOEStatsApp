@@ -8,5 +8,7 @@ namespace DataContext
         public AOEStatsDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<UnitStatsItem> UnitStatsItems { get; set; }
+
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

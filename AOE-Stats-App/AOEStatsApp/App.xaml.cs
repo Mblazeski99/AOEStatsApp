@@ -86,7 +86,7 @@ namespace AOEStatsApp
             });
 
             var notificationStore = _host.Services.GetRequiredService<NotificationsStore>();
-            notificationStore.NotificationsChanged += (currentNotification, args) =>
+            notificationStore.NotificationAdded += (currentNotification, args) =>
             {
                 var notification = currentNotification as Notification;
 

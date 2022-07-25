@@ -47,7 +47,7 @@ namespace AOEStatsApp.Commands
 
                     case nameof(NotificationsLogViewModel):
                         if (_navigationStore.CurrentViewModel.GetType() != typeof(NotificationsLogViewModel))
-                            viewModel = new NotificationsLogViewModel();
+                            viewModel = new NotificationsLogViewModel(_notificationsStore);
                         break;
 
                     case nameof(UnitStatsItemListingViewModel):
