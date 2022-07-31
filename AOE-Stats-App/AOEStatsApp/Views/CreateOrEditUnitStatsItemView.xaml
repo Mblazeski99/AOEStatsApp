@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AOEStatsApp.ViewModels"
-             xmlns:customControls="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
+             xmlns:local="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
+             xmlns:customControls="clr-namespace:AOEStatsApp.CustomControls"
              d:DataContext="{d:DesignInstance Type=viewModels:CreateOrEditUnitStatsItemViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              Width="600">
@@ -21,11 +22,11 @@
             
             <TextBlock Text="Create Unit" Style="{StaticResource HeaderTextBlockStyle}" />
 
-            <customControls:LoadingSpinner Thickness="1.5"
-                                           Color="Black"
-                                           IsLoading="{Binding IsLoading}"
-                                           Margin="10 5 0 0"
-                                           Diameter="20" />
+            <local:LoadingSpinner Thickness="1.5"
+                                  Color="Black"
+                                  IsLoading="{Binding IsLoading}"
+                                  Margin="10 5 0 0"
+                                  Diameter="20" />
 
         </StackPanel>
 
@@ -153,7 +154,9 @@
 
                 <TextBlock Text="Video Link" />
 
-                <TextBox Grid.Row="1" Text="{Binding VideoLink, UpdateSourceTrigger=PropertyChanged}" />
+                <customControls:PlaceholderTextBox Grid.Row="1" 
+                                                   Placeholder="Enter Link"
+                                                   Text="{Binding VideoLink, UpdateSourceTrigger=PropertyChanged}" />
 
             </Grid>
 

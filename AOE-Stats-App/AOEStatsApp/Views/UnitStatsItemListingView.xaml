@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:AOEStatsApp.ViewModels" 
-             xmlns:customControls="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
+             xmlns:local="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModels:UnitStatsItemListingViewModel, IsDesignTimeCreatable=True}">
 
@@ -26,11 +26,11 @@
                 
                 <TextBlock Text="Units" Style="{StaticResource HeaderTextBlockStyle}" />
 
-                <customControls:LoadingSpinner Thickness="1.5"
-                                               Color="Black"
-                                               IsLoading="{Binding IsLoading}"
-                                               Margin="10 5 0 0"
-                                               Diameter="20" />
+                <local:LoadingSpinner Thickness="1.5"
+                                      Color="Black"
+                                      IsLoading="{Binding IsLoading}"
+                                      Margin="10 5 0 0"
+                                      Diameter="20" />
                 
             </StackPanel>
 
@@ -45,10 +45,10 @@
 
         <Grid Grid.Row="1" Margin="0 10 0 0">
             
-            <customControls:LoadingSpinner Thickness="5"
-                                           Color="Black"
-                                           Diameter="100"
-                                           IsLoading="{Binding IsItemsGridLoading}" />
+            <local:LoadingSpinner Thickness="5"
+                                  Color="Black"
+                                  Diameter="100"
+                                  IsLoading="{Binding IsItemsGridLoading}" />
 
             <Grid Visibility="{Binding IsItemsGridLoading, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
 
